@@ -1,6 +1,35 @@
 module.exports = {
-  someSidebar: {
-    Docusaurus: ['doc1', 'doc2', 'doc3'],
-    Features: ['mdx'],
+  "Quick Guide": {
+    "DOM and Events": [
+      "create-modify-element",
+      'read-from-element',
+     ],
+
+    /*
+    'DOM and Events': [
+      'create-modify-element',
+      'read-from-element',
+      'event-callback-delegation',
+      'event-delegation-bubbling',
+      'input-elements',
+      'form-validation',
+      'mouse-touch-events',
+      'scroll-intersection-observer',
+    ],
+    'CSS': [
+      'common-selectors', 
+      'specificity',
+    ]
+    */
   },
+  tasks: [
+    /*
+    'infinite-scrolling-page-with-api',
+    'draggable-element',
+    'drag-and-drop',
+    'clock-ui',
+    'popup-manager',
+    'todo-list'
+    */
+  ],
 };
