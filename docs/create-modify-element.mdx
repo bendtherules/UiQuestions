@@ -6,6 +6,9 @@ title: DOM Manipulation
 slug: /
 ---
 
+import Admonition from "../components/Admonition"
+import Accordion from "../components/Accordion"
+
 ## Finding elements
 
 ### 1. `querySelector()`
@@ -20,16 +23,19 @@ document.querySelector(".box"); // returns first div.box
 document.querySelector(".not-found"); // null
 ```
 
-:::note Extra
-  This method is also available on all DOM nodes. If you want to look within a specific element, this is very useful.
+<Accordion>
+  <Admonition type="note" title="Extra">
+    This method is also available on all DOM nodes. If you want to look within a specific element, this is very useful.
 
-```js
-// Example - div.outer > div.inner
-outerEle.addEventListener((ev) => {
-  var innerEle = ev.target.querySelector(".inner");
-})
-```
-:::
+    ```js
+    // Example - div.outer > div.inner
+    outerEle.addEventListener((ev) => {
+      var innerEle = ev.target.querySelector(".inner");
+    });
+    ```
+
+  </Admonition>
+</Accordion>
 
 [Read on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelector)
 
@@ -56,6 +62,5 @@ for (var p of paragraphs) {
 [Read on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll)
 
 ## Create / insert element
-
 
 ### 1. `createElement`
