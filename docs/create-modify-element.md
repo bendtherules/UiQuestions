@@ -1,6 +1,61 @@
 ---
 id: create-modify-element
-title: Create / modify DOM nodes
-sidebar_label: DOM Manipulation
+# title: Create / modify DOM nodes
+# sidebar_label: DOM Manipulation
+title: DOM Manipulation
 slug: /
 ---
+
+## Finding elements
+
+### 1. `querySelector()`
+
+This method returns the **first element that matches the CSS selector**. If no match is found, it returns `null`.
+
+```js
+var ele = document.querySelector(selector);
+
+// Ex. - body > div.container > div.box + div.box
+document.querySelector(".box"); // returns first div.box
+document.querySelector(".not-found"); // null
+```
+
+:::note Extra
+  This method is also available on all DOM nodes. If you want to look within a specific element, this is very useful.
+
+```js
+// Example - div.outer > div.inner
+outerEle.addEventListener((ev) => {
+  var innerEle = ev.target.querySelector(".inner");
+})
+```
+:::
+
+[Read on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelector)
+
+### 2. `querySelectorAll()`
+
+This method returns **all the elements that match** the specified CSS selector.
+
+It returns a **static NodeList**, which contains the matching elements. If no match is found, it returns empty NodeList.
+
+:::note How to consume NodeList?  
+ NodeList is a iterable, so it can be iterated using `for..of` loop, or converted to a array using spread syntax like `[...nodelist]`.
+
+Here, the NodeList is static - meaning any changes in the DOM later does not affect the content of the existing collection. More about NodeList [here](https://developer.mozilla.org/en-US/docs/Web/API/NodeList).  
+:::
+
+```js
+var paragraphs = document.querySelectorAll("p");
+
+for (var p of paragraphs) {
+  p.className = "note";
+}
+```
+
+[Read on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll)
+
+## Create / insert element
+
+
+### 1. `createElement`
