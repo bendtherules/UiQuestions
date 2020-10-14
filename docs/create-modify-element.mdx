@@ -25,15 +25,14 @@ document.querySelector(".not-found"); // null
 
 <Accordion>
   <Admonition type="note" title="Extra">
-    This method is also available on all DOM nodes. If you want to look within a specific element, this is very useful.
+  This method is also available on all DOM nodes. If you want to look within a specific element, this is very useful.
 
-    ```js
-    // Example - div.outer > div.inner
-    outerEle.addEventListener((ev) => {
-      var innerEle = ev.target.querySelector(".inner");
-    });
-    ```
-
+  ```js
+  // Example - div.outer > div.inner
+  outerEle.addEventListener((ev) => {
+    var innerEle = ev.target.querySelector(".inner");
+  });
+  ```
   </Admonition>
 </Accordion>
 
