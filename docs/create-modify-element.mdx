@@ -63,3 +63,27 @@ for (var p of paragraphs) {
 ## Create / insert element
 
 ### 1. `createElement`
+
+The `document.createElement` method creates a new HTML element, taking the tag name (`"div"`) as first argument.
+
+To set attributes and add the element to DOM, look at `.setAttribute` and `.appendChild` below.
+
+```js
+var newEle = document.createElement("div") // creates <div/>
+```
+
+<Accordion title="Related">
+  <Admonition type="note" title="Creating text node">
+    To add some text inside a element, you'll need to create a <b>text node</b>. 
+    `createTextNode` method takes a string as input and returns a new TextNode.
+
+  ```js
+  var newEle = document.createElement("div")
+  var newText = document.createTextNode("Hello world")
+
+  newEle.appendChild(newText) // <div>Hello world</div>
+  ```
+  </Admonition>
+</Accordion>
+
+[Read on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
