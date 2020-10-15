@@ -62,7 +62,7 @@ for (var p of paragraphs) {
 
 ## Create / insert element
 
-### 1. `createElement`
+### 1. `createElement()`
 
 The `document.createElement` method creates a new HTML element, taking the tag name (`"div"`) as first argument.
 
@@ -87,3 +87,18 @@ var newEle = document.createElement("div") // creates <div/>
 </Accordion>
 
 [Read on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
+
+### 2. `setAttribute()`
+
+Every element has a `.setAttribute(name, value)` method, which can add/modify a attribute on the current element. 
+
+`name` - the attribute name which should be added. Ex- `"type"`.  
+`value` - value of the attribute. Ex- `"text"`.
+
+```js
+var newInput = document.createElement("input")
+
+newInput.setAttribute("type", "text") // <input type="text"/>
+```
+
+[Read on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute)
