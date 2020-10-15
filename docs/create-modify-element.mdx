@@ -16,10 +16,10 @@ import Accordion from "../components/Accordion"
 This method returns the **first element that matches the CSS selector**. If no match is found, it returns `null`.
 
 ```js
-var ele = document.querySelector(selector);
+document.querySelector(selector);
 
-// Ex. - body > div.container > div.box + div.box
-document.querySelector(".box"); // returns first div.box
+// Ex. - body > div.container > div.box
+document.querySelector(".box"); // returns div.box
 document.querySelector(".not-found"); // null
 ```
 
@@ -51,9 +51,9 @@ Here, the NodeList is static - meaning any changes in the DOM later does not aff
 :::
 
 ```js
-var paragraphs = document.querySelectorAll("p");
+var paras = document.querySelectorAll("p");
 
-for (var p of paragraphs) {
+for (var p of paras) {
   p.className = "note";
 }
 ```
@@ -69,7 +69,7 @@ The `document.createElement` method creates a new HTML element, taking the tag n
 To set attributes and add the element to DOM, look at `.setAttribute` and `.appendChild` below.
 
 ```js
-var newEle = document.createElement("div") // creates <div/>
+document.createElement("div") // creates <div/>
 ```
 
 <Accordion title="Related">
@@ -78,10 +78,10 @@ var newEle = document.createElement("div") // creates <div/>
     `createTextNode` method takes a string as input and returns a new TextNode.
 
   ```js
-  var newEle = document.createElement("div")
+  var ele = document.createElement("div")
   var newText = document.createTextNode("Hello world")
 
-  newEle.appendChild(newText) // <div>Hello world</div>
+  ele.appendChild(newText) // <div>Hello world</div>
   ```
   </Admonition>
 </Accordion>
@@ -96,9 +96,10 @@ Every element has a `.setAttribute(name, value)` method, which can add/modify a 
 `value` - value of the attribute. Ex- `"text"`.
 
 ```js
-var newInput = document.createElement("input")
+var ele = document.createElement("input")
 
-newInput.setAttribute("type", "text") // <input type="text"/>
+ele.setAttribute("type", "text") 
+// creates - <input type="text"/>
 ```
 
 [Read on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute)
