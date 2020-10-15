@@ -107,3 +107,41 @@ ele.setAttribute("type", "text")
 ```
 
 [Read on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute)
+
+### 3. `appendChild()`
+
+The `.appendChild()` method inserts a new element as the last child of the current element.
+
+`ele1.appendChild(ele2)`
+
+```js
+var eleDiv = document.createElement("div")
+var eleH1 = document.createElement("h1")
+
+eleDiv.appendChild(eleH1)
+// <div><h1></h1></div>
+```
+
+<Accordion title="Related">
+  <Admonition type="note" title="If it already has a parent">
+  If `ele2` is already a child of another element, 
+  then it is first removed from its current parent and then added within the new parent `ele1`.
+  </Admonition>
+
+  <Admonition type="note" title="If it is DocumentFragment">
+  If `ele2` is a DocumentFragment, then the entire contents of the DocumentFragment is appended 
+  to the child list of `ele1`.
+  </Admonition>
+
+  <Admonition type="note" title="`.append()`">
+  There is a newer api called `.append()`, which is similar.
+
+  ⭐️ `.append()` allows multiple child elements or string as argument. It creates Text node automatically if the input is a string.  
+
+  ```js
+  ele1.append(ele2, ele3, 'hello world')
+  ```
+
+  💔 `.appendChild()` only allows a single element as input.
+  </Admonition>
+</Accordion>
