@@ -64,7 +64,7 @@ for (var p of paras) {
 
 ### 1. `createElement()`
 
-The `document.createElement` method creates a new HTML element, taking the tag name (`"div"`) as first argument.
+It creates a new HTML element, taking the tag name (`"div"`) as argument.
 
 To set attributes and add the element to DOM, look at `.setAttribute` and `.appendChild` below.
 
@@ -92,7 +92,7 @@ document.createElement("div")
 
 ### 2. `setAttribute()`
 
-Every element has a `setAttribute` method - which sets a attribute on the current element. 
+`Element.setAttribute` sets a attribute on the current element. 
 
 `setAttribute(name, value)`
 
@@ -110,7 +110,7 @@ ele.setAttribute("type", "text")
 
 ### 3. `appendChild()`
 
-The `.appendChild()` method inserts a new element as the last child of the current element.
+`Element.appendChild` inserts a new element as the last child of the current element.
 
 `ele1.appendChild(ele2)`
 
