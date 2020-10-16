@@ -12,7 +12,7 @@ import MDN from "../components/MDNBadge"
 
 ## Finding elements
 
-### 1. `querySelector()`
+### 1. querySelector()
 
 This method returns the **first element that matches the CSS selector**. If no match is found, it returns `null`.
 
@@ -39,7 +39,7 @@ document.querySelector(".not-found"); // null
 
 <MDN title="querySelector" url="https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelector" />
 
-### 2. `querySelectorAll()`
+### 2. querySelectorAll()
 
 This method returns **all the elements that match** the specified CSS selector.
 
@@ -63,11 +63,9 @@ for (var p of paras) {
 
 ## Create / insert element
 
-### 1. `createElement()`
+### 1. createElement()
 
 It creates a new HTML element, taking the tag name (`"div"`) as argument.
-
-To set attributes and add the element to DOM, look at `.setAttribute` and `.appendChild` below.
 
 ```js
 document.createElement("div")
@@ -91,11 +89,11 @@ document.createElement("div")
 
 <MDN title="createElement" url="https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement" />
 
-### 2. `setAttribute()`
+### 2. setAttribute()
 
-`Element.setAttribute` sets a attribute on the current element. 
+It sets a attribute on the current element. 
 
-`setAttribute(name, value)`
+`Element.setAttribute(name, value)`
 
 `name` - name of the attribute to add. Ex- "type".  
 `value` - value of the attribute. Ex- "text".
@@ -109,11 +107,11 @@ ele.setAttribute("type", "text")
 <MDN title="setAttribute" url="https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute" />
 
 
-### 3. `appendChild()`
+### 3. appendChild()
 
-`Element.appendChild` inserts a new element as the last child of the current element.
+It inserts a new element as the last child of the current element.
 
-`ele1.appendChild(ele2)`
+`Element.appendChild(newElement)`
 
 ```js
 var eleDiv = document.createElement("div")
@@ -125,17 +123,17 @@ eleDiv.appendChild(eleH1)
 
 <Accordion title="Related">
   <Admonition type="note" title="If it already has a parent">
-  If `ele2` is already a child of another element, 
-  then it is first removed from its current parent and then added within the new parent `ele1`.
+  If newElement is already a child of another element, 
+  then it is removed from its existing parent and then added to the new parent.
   </Admonition>
 
   <Admonition type="note" title="If it is DocumentFragment">
-  If `ele2` is a DocumentFragment, then the entire contents of the DocumentFragment is appended 
-  to the child list of `ele1`.
+  If newElement is a DocumentFragment, then - instead of adding the fragment itself as a child, 
+  the entire content of the fragment is added as children of the parent element.
   </Admonition>
 
-  <Admonition type="note" title="`.append()`">
-  There is a newer api called .append(), which is similar.
+  <Admonition type="note" title=".append()">
+  There is a newer api called .append(), which is a superset of .appendChild().<br/><br/>
 
   ⭐️ .append() allows you to insert multiple child elements in a single call. It also allows string as input, which gets converted to Text node.  
 
@@ -143,8 +141,11 @@ eleDiv.appendChild(eleH1)
   ele1.append(ele2, ele3, 'hello world')
   ```
 
-  💔 .appendChild() only allows inseting a single element at a time.
+  💔 .appendChild() only allows inserting a single element at a time.
   </Admonition>
 </Accordion>
 
 <MDN title="appendChild" url="https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild" />
+
+### 4. appendChild()
+
