@@ -198,4 +198,34 @@ parent.insertBefore(newEle, ref.nextSibling)
 ```
 :::
 
-<MDN title="removeChild" url="https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild" />
+<MDN title="insertBefore" url="https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore" />
+
+### 6. Document Fragment
+
+DocumentFragment can be considered to be a off-canvas lightweight `document` object. 
+It is generally used for batching multiple operations - by doing them over time in the fragment and rendering it in one shot to the actual visible DOM.
+
+Because it is not rendered, making changes to the fragment doesn't cause any performance impact (no reflow).
+
+**Methods** -
+
+`document.createDocumentFragment()` - creates a new empty fragment.
+
+`.appendChild()` / `.insertBefore()` - can be used to move the whole content of the fragment to the actual DOM.
+
+**Example** -
+
+```js
+var fragment = document.createDocumentFragment()
+
+// Insert / modify elements in fragment
+
+// in dom, <div class="outer"/>
+
+outerEle.appendChild(fragment)
+// This will remove all content from fragment and 
+// insert them within outerEle.
+
+```
+
+<MDN title="Document Fragment" url="https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment" />
