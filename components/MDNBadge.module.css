@@ -1,0 +1,14 @@
+.imgBlock {
+  height: 1.3em;
+}
+
+.imgInline {
+}
+
+.wrapperBlock {
+  display: block;
+  margin: 2px 0;
+}
+
+.wrapperInline {
+}
