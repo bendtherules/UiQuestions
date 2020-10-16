@@ -8,6 +8,7 @@ slug: /
 
 import Admonition from "../components/Admonition"
 import Accordion from "../components/Accordion"
+import MDN from "../components/MDNBadge"
 
 ## Finding elements
 
@@ -36,7 +37,7 @@ document.querySelector(".not-found"); // null
   </Admonition>
 </Accordion>
 
-[Read on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelector)
+<MDN title="querySelector" url="https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelector" />
 
 ### 2. `querySelectorAll()`
 
@@ -58,7 +59,7 @@ for (var p of paras) {
 }
 ```
 
-[Read on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll)
+<MDN title="querySelectorAll" url="https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll" />
 
 ## Create / insert element
 
@@ -88,7 +89,7 @@ document.createElement("div")
   </Admonition>
 </Accordion>
 
-[Read on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
+<MDN title="createElement" url="https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement" />
 
 ### 2. `setAttribute()`
 
@@ -105,8 +106,8 @@ var ele = document.createElement("input")
 ele.setAttribute("type", "text") 
 // <input type="text"/>
 ```
+<MDN title="setAttribute" url="https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute" />
 
-[Read on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute)
 
 ### 3. `appendChild()`
 
@@ -146,4 +147,4 @@ eleDiv.appendChild(eleH1)
   </Admonition>
 </Accordion>
 
-[Read on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild)
+<MDN title="appendChild" url="https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild" />
