@@ -19,7 +19,7 @@ This method returns the **first element that matches the CSS selector**. If no m
 ```js
 document.querySelector(selector);
 
-// Ex- .container > .box
+// <div className="box" />
 document.querySelector(".box"); // returns .box
 document.querySelector(".not-found"); // null
 ```
@@ -147,5 +147,20 @@ eleDiv.appendChild(eleH1)
 
 <MDN title="appendChild" url="https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild" />
 
-### 4. appendChild()
+### 4. removeChild()
 
+`Element.removeChild(childElement)`
+
+This method tries to remove a child element from the parent and returns the removed node.
+
+If the element to be removed is not a child of the parent element, it throws a `NotFoundError` DOMException.
+
+```js
+// <div class="parent">
+//   <div class="child"/>
+// </div>
+
+parentEle.removeChild(childEle)
+```
+
+<MDN title="removeChild" url="https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild" />
