@@ -205,7 +205,7 @@ parent.insertBefore(newEle, ref.nextSibling)
 DocumentFragment can be considered to be a off-canvas lightweight `document` object. 
 It is generally used for batching multiple operations - by doing them over time in the fragment and rendering it in one shot to the actual visible DOM.
 
-Because it is not rendered, making changes to the fragment doesn't cause any performance impact (no reflow).
+Because fragment is not rendered, making changes to it doesn't cause any performance impact (no reflow).
 
 **Methods** -
 
