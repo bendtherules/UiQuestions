@@ -1,6 +1,5 @@
 ---
 id: create-modify-element
-# title: Create / modify DOM nodes
 # sidebar_label: DOM Manipulation
 title: DOM Manipulation
 slug: /
@@ -190,3 +189,13 @@ var newEle = document.createElement("li")
 
 parent.insertBefore(newEle, ref)
 ```
+
+:::note insertAfter()
+There is no `insertAfter()` method. It can be emulated by combining insertBefore method with ele.nextSibling.
+
+```js
+parent.insertBefore(newEle, ref.nextSibling)
+```
+:::
+
+<MDN title="removeChild" url="https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild" />
