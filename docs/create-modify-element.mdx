@@ -109,7 +109,7 @@ ele.setAttribute("type", "text")
 
 ### 3. appendChild()
 
-It inserts a new element as the last child of the current element.
+It inserts a new element as the last child of the parent element.
 
 `Element.appendChild(newElement)`
 
@@ -121,7 +121,7 @@ eleDiv.appendChild(eleH1)
 // <div><h1></h1></div>
 ```
 
-<Accordion title="Related">
+<Accordion title="Edge cases and alternative">
   <Admonition type="note" title="If it already has a parent">
   If newElement is already a child of another element, 
   then it is removed from its existing parent and then added to the new parent.
@@ -164,3 +164,29 @@ parentEle.removeChild(childEle)
 ```
 
 <MDN title="removeChild" url="https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild" />
+
+### 5. insertBefore()
+
+`Element.insertBefore(newEle, refEle)`
+
+This method inserts a new child element before another child within a parent.
+
+`newEle` - The node to be inserted.  
+
+`refEle` - The reference element before which newEle should be inserted. If refEle is `null`, then newEle is added as the last child.
+
+```js
+// <ul>
+//   <li> Apple </li>
+//   <li> Zebra </li>
+// </ul>
+
+// To add a new <li> above "Zebra"
+
+var parent = document.querySelector("ul")
+var ref = document.querySelector("li:last-child")
+
+var newEle = document.createElement("li")
+
+parent.insertBefore(newEle, ref)
+```
