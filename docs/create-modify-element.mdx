@@ -202,7 +202,7 @@ parent.insertBefore(newEle, ref.nextSibling)
 
 ### 6. Document Fragment
 
-DocumentFragment can be considered to be a off-canvas lightweight `document` object. 
+DocumentFragment can be considered to be a off-screen lightweight `document` object. 
 It is generally used for batching multiple operations - by doing them over time in the fragment and rendering it in one shot to the actual visible DOM.
 
 Because fragment is not rendered, making changes to it doesn't cause any performance impact (no reflow).
