@@ -30,7 +30,7 @@ document.querySelector(".not-found"); // null
   ```js
   // Example - .outer > .inner
   outerEle.addEventListener((ev) => {
-    var innerEle = ev.target.querySelector(".inner");
+    let innerEle = ev.target.querySelector(".inner");
   });
   ```
   </Admonition>
@@ -51,9 +51,9 @@ Here, the NodeList is static - meaning any changes in the DOM later does not aff
 :::
 
 ```js
-var paras = document.querySelectorAll("p");
+let paras = document.querySelectorAll("p");
 
-for (var p of paras) {
+for (let p of paras) {
   p.className = "note";
 }
 ```
@@ -77,8 +77,8 @@ document.createElement("div")
     `createTextNode` method takes a string as input and returns a new TextNode.
 
   ```js
-  var ele = document.createElement("div")
-  var newText = document.createTextNode("Hello world")
+  let ele = document.createElement("div")
+  let newText = document.createTextNode("Hello world")
 
   ele.appendChild(newText) 
   // <div>Hello world</div>
@@ -98,7 +98,7 @@ It sets a attribute on the current element.
 `value` - value of the attribute. Ex- "text".
 
 ```js
-var ele = document.createElement("input")
+let ele = document.createElement("input")
 
 ele.setAttribute("type", "text") 
 // <input type="text"/>
@@ -113,8 +113,8 @@ It inserts a new element as the last child of the parent element.
 `Element.appendChild(newElement)`
 
 ```js
-var eleDiv = document.createElement("div")
-var eleH1 = document.createElement("h1")
+let eleDiv = document.createElement("div")
+let eleH1 = document.createElement("h1")
 
 eleDiv.appendChild(eleH1)
 // <div><h1></h1></div>
@@ -182,10 +182,10 @@ This method inserts a new child element before another child within a parent.
 
 // To add a new <li> above "Zebra"
 
-var parent = document.querySelector("ul")
-var ref = document.querySelector("li:last-child")
+let parent = document.querySelector("ul")
+let ref = document.querySelector("li:last-child")
 
-var newEle = document.createElement("li")
+let newEle = document.createElement("li")
 
 parent.insertBefore(newEle, ref)
 ```
@@ -216,12 +216,12 @@ Because fragment is not rendered, making changes to it doesn't cause any perform
 **Example** -
 
 ```js
-var fragment = document.createDocumentFragment()
+let fragment = document.createDocumentFragment()
 
 // Insert / modify elements in fragment
 
 // in dom, <div class="outer"/>
-var outerEle = document.querySelector(".outer")
+let outerEle = document.querySelector(".outer")
 
 outerEle.appendChild(fragment)
 // This will remove all content from fragment and 
