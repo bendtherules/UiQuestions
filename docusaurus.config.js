@@ -11,8 +11,8 @@ module.exports = {
     navbar: {
       title: 'UI Questions',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'Ui Questions',
+        src: 'img/logo_ui.svg',
       },
       items: [
         {
