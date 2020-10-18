@@ -3,6 +3,7 @@ module.exports = {
     "DOM and Events": [
       "create-modify-element",
       'element-properties',
+      'element-position-scroll',
      ],
 
     /*
