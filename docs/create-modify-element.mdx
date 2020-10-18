@@ -62,7 +62,7 @@ for (var p of paras) {
 
 ## Create / insert element
 
-### 1. createElement()
+### 3. createElement()
 
 It creates a new HTML element, taking the tag name (`"div"`) as argument.
 
@@ -88,7 +88,7 @@ document.createElement("div")
 
 <MDN title="createElement" url="https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement" />
 
-### 2. setAttribute()
+### 4. setAttribute()
 
 It sets a attribute on the current element. 
 
@@ -106,7 +106,7 @@ ele.setAttribute("type", "text")
 <MDN title="setAttribute" url="https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute" />
 
 
-### 3. appendChild()
+### 5. appendChild()
 
 It inserts a new element as the last child of the parent element.
 
@@ -146,7 +146,7 @@ eleDiv.appendChild(eleH1)
 
 <MDN title="appendChild" url="https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild" />
 
-### 4. removeChild()
+### 6. removeChild()
 
 `Element.removeChild(childElement)`
 
@@ -164,7 +164,7 @@ parentEle.removeChild(childEle)
 
 <MDN title="removeChild" url="https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild" />
 
-### 5. insertBefore()
+### 7. insertBefore()
 
 `Element.insertBefore(newEle, refEle)`
 
@@ -200,7 +200,7 @@ parent.insertBefore(newEle, ref.nextSibling)
 
 <MDN title="insertBefore" url="https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore" />
 
-### 6. Document Fragment
+### 8. Document Fragment
 
 DocumentFragment can be considered to be a off-screen lightweight `document` object. 
 It is generally used for batching multiple operations - by doing them in the fragment over time and then rendering the whole content to the visible DOM in one shot .
