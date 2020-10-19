@@ -9,6 +9,12 @@ import Admonition from "../components/Admonition"
 import Accordion from "../components/Accordion"
 import MDN from "../components/MDNBadge"
 
+:::note DOM interfaces
+Every kind of **DOM** node is represented by an interface based on **Node** interface.   
+**Element, Document and DocumentFragment** interfaces inherit from Node.  
+More about DOM interfaces [here](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
+::: 
+
 ## Finding elements
 
 ### 1. querySelector()
@@ -36,7 +42,7 @@ document.querySelector(".not-found"); // null
   </Admonition>
 </Accordion>
 
-<MDN title="querySelector" url="https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelector" />
+<MDN title="querySelector" url="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector" />
 
 ### 2. querySelectorAll()
 
@@ -60,17 +66,19 @@ for (let p of paras) {
 }
 ```
 
-<MDN title="querySelectorAll" url="https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll" />
+<MDN title="querySelectorAll" url="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll" />
 
 ## Create / insert element
 
 ### 3. createElement()
 
-It creates a new HTML element, taking the tag name (`"div"`) as argument.
+`document.createElement(tagName) : Element`
+
+This method creates a new HTML element, taking the specified HTML tag name as argument.
 
 ```js
 document.createElement("div")
-// creates <div/>
+// creates a <div> element
 ```
 
 <Accordion title="Related">
@@ -94,7 +102,7 @@ document.createElement("div")
 
 `Element.setAttribute(name, value)`
 
-It sets a attribute on the current element. 
+This method sets an attribute on the current element. 
 
 `name` - name of the attribute to add. Ex- "type".  
 `value` - value of the attribute. Ex- "text".
@@ -110,9 +118,9 @@ ele.setAttribute("type", "text")
 
 ### 5. appendChild()
 
-`Element.appendChild(newElement)`
+`Node.appendChild(newNode)`
 
-It inserts a new element as the last child of the parent element.
+This method inserts a new node as the last child of the parent node.
 
 ```js
 let eleDiv = document.createElement("div")
@@ -150,11 +158,11 @@ eleDiv.appendChild(eleH1)
 
 ### 6. removeChild()
 
-`Element.removeChild(childElement)`
+`Node.removeChild(childNode)`
 
-This method tries to remove a child element from the parent and returns the removed node.
+This method tries to remove a child node from the parent and returns the removed node.
 
-If the element to be removed is not a child of the parent element, it throws a `NotFoundError` DOMException.
+If the node to be removed is not a child of the parent node, it throws a `NotFoundError` DOMException.
 
 ```js
 // <div class="parent">
@@ -168,13 +176,13 @@ parentEle.removeChild(childEle)
 
 ### 7. insertBefore()
 
-`Element.insertBefore(newEle, refEle)`
+`Node.insertBefore(newEle, refEle)`
 
-This method inserts a new child element before another child within a parent.
+This method inserts a new child node before another node within a parent.
 
 `newEle` - The node to be inserted.  
 
-`refEle` - The reference element before which newEle should be inserted. If refEle is `null`, then newEle is added as the last child.
+`refEle` - The reference node before which newEle should be inserted. If refEle is `null`, then newEle is added as the last child.
 
 ```js
 // <ul>
@@ -204,18 +212,14 @@ parent.insertBefore(newEle, ref.nextSibling)
 
 ### 8. Document Fragment
 
+`document.createDocumentFragment() : DocumentFragment`
+
+This method is used to create a new empty document fragment.
+
 DocumentFragment can be considered to be a off-screen lightweight `document` object. 
 It is generally used for batching multiple operations - by doing them in the fragment over time and then rendering the whole content to the visible DOM in one shot .
 
 Because fragment is not rendered, making changes to it doesn't cause any performance impact (no reflow).
-
-**Methods** -
-
-`document.createDocumentFragment()` - creates a new empty fragment.
-
-`.appendChild()` / `.insertBefore()` - can be used to move the whole content of the fragment to the actual DOM.
-
-**Example** -
 
 ```js
 let fragment = document.createDocumentFragment()
@@ -228,6 +232,8 @@ let outerEle = document.querySelector(".outer")
 outerEle.appendChild(fragment)
 // This will remove all content from fragment and 
 // insert them within outerEle.
+
+// .appendChild()/.insertBefore() - can be used to move the whole content of the fragment to the actual DOM.
 
 ```
 
