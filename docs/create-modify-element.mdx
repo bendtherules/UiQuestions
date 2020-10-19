@@ -13,11 +13,11 @@ import MDN from "../components/MDNBadge"
 
 ### 1. querySelector()
 
+`document.querySelector(selector) : Element | null`
+
 This method returns the **first element that matches the CSS selector**. If no match is found, it returns `null`.
 
 ```js
-document.querySelector(selector);
-
 // <div className="box" />
 document.querySelector(".box"); // returns .box
 document.querySelector(".not-found"); // null
@@ -25,7 +25,7 @@ document.querySelector(".not-found"); // null
 
 <Accordion>
   <Admonition type="note" title="Extra">
-  This method is also available on all DOM nodes. If you want to look within a specific element, this is very useful.
+  This method is also available on all DOM nodes. If you want to look within a specific element, just use `ele.querySelector()` on the parent element.
 
   ```js
   // Example - .outer > .inner
@@ -39,6 +39,8 @@ document.querySelector(".not-found"); // null
 <MDN title="querySelector" url="https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelector" />
 
 ### 2. querySelectorAll()
+
+`document.querySelectorAll(selector) : NodeList`
 
 This method returns **all the elements that match** the specified CSS selector.
 
@@ -90,9 +92,9 @@ document.createElement("div")
 
 ### 4. setAttribute()
 
-It sets a attribute on the current element. 
-
 `Element.setAttribute(name, value)`
+
+It sets a attribute on the current element. 
 
 `name` - name of the attribute to add. Ex- "type".  
 `value` - value of the attribute. Ex- "text".
@@ -108,9 +110,9 @@ ele.setAttribute("type", "text")
 
 ### 5. appendChild()
 
-It inserts a new element as the last child of the parent element.
-
 `Element.appendChild(newElement)`
+
+It inserts a new element as the last child of the parent element.
 
 ```js
 let eleDiv = document.createElement("div")
