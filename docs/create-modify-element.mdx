@@ -29,7 +29,7 @@ document.querySelector(".not-found"); // null
 ```
 
 <Accordion>
-  <Admonition type="note" title="Extra">
+  <Admonition type="note" title="Also available on Element and fragment" id="element-has-qs">
   Besides <b>Document</b>, this method is also available on <b>Element</b> and <b>DocumentFragment</b>.<br/>
   If you want to look within a specific element, just use <code>ele.querySelector()</code> on the parent element.<br/>
   If you want to look within a specific fragment, just use <code>df.querySelector()</code> on the parent fragment.
@@ -65,18 +65,7 @@ for (let p of paras) {
 }
 ```
 
-<Accordion>
-  <Admonition type="note" title="Extra">
-  Besides <b>Document</b>, this method is also available on <b>Element</b> and <b>DocumentFragment</b>.<br/>
-  If you want to look for list of elements within specific element, just use <code>ele.querySelectorAll()</code> on the parent element.<br/>
-  If you want to look for list of elements within specific fragment, just use <code>df.querySelectorAll()</code> on the parent fragment.
-
-  ```js
-  // Example - outer is a parent element/fragment.
-    let innerEles = outer.querySelectorAll(".inner");
-  ```
-  </Admonition>
-</Accordion>
+`querySelectorAll` is also available on <b>Element</b> and <b>DocumentFragment</b>, in the [same way as querySelector](#element-has-qs).
 
 <MDN title="querySelectorAll" url="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll" />
 
