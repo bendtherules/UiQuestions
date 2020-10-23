@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default class Admonition extends Component {
   render() {
-    const { type, iconType, title, children, addIfmClass } = this.props;
+    const { type, iconType, title, id, children, addIfmClass } = this.props;
 
     let wrapperClasses = ["admonition", `admonition-${type}`];
     if (addIfmClass) {
@@ -11,7 +11,7 @@ export default class Admonition extends Component {
     }
 
     return (
-      <div className={wrapperClasses.join(" ")}>
+      <div className={wrapperClasses.join(" ")} id={id}>
         <div className="admonition-heading">
           <h5>
             <div className="admonition-icon">{returnIcon(type, iconType)}</div>
