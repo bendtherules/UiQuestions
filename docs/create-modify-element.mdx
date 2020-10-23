@@ -137,7 +137,7 @@ eleDiv.appendChild(eleH1)
   then it is removed from its existing parent and then added to the new parent.
   </Admonition>
 
-  <Admonition type="note" title="If it is DocumentFragment">
+  <Admonition type="note" title="If it is DocumentFragment" id="appendChild-documentFragment">
   If newNode is a DocumentFragment, then - instead of adding the fragment itself as a child, 
   the entire content of the fragment is added as children of the parent node.
   </Admonition>
@@ -179,7 +179,9 @@ parentEle.removeChild(childEle)
 
 `Node.insertBefore(newEle, refEle)`
 
-This method inserts a new child node before another node within a parent.
+This method inserts a new child node before another node within a parent.  
+
+It also works with **DocumentFragment**, by inserting all of its content in that position.
 
 `newEle` - The node to be inserted.  
 
@@ -220,7 +222,7 @@ This method is used to create a new empty document fragment.
 DocumentFragment can be considered to be a off-screen lightweight `document` object. 
 It is generally used for batching multiple operations - by doing them in the fragment over time and then rendering the whole content to the visible DOM in one shot .
 
-Because fragment is not rendered, making changes to it doesn't cause any performance impact (no reflow).
+Because fragment is not rendered, making changes to it doesn't cause any performance impact (no reflow). To **actually "render" the fragment** in the visible document, [use appendChild](#appendChild-documentFragment) or `insertBefore`.
 
 ```js
 let fragment = document.createDocumentFragment()
@@ -233,8 +235,6 @@ let outerEle = document.querySelector(".outer")
 outerEle.appendChild(fragment)
 // This will remove all content from fragment and 
 // insert them within outerEle.
-
-// .appendChild()/.insertBefore() - can be used to move the whole content of the fragment to the actual DOM.
 
 ```
 
