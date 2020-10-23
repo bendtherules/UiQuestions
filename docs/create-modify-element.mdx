@@ -11,8 +11,7 @@ import MDN from "../components/MDNBadge"
 
 :::note DOM interfaces
 Every kind of **DOM** node is represented by an interface based on **Node** interface.   
-**Element, Document and DocumentFragment** interfaces inherit from Node.  
-More about DOM interfaces [here](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
+**Element, Document and DocumentFragment** interfaces inherit from Node. More about DOM interfaces [here](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
 ::: 
 
 ## Finding elements
@@ -31,13 +30,13 @@ document.querySelector(".not-found"); // null
 
 <Accordion>
   <Admonition type="note" title="Extra">
-  This method is also available on all DOM nodes. If you want to look within a specific element, just use `ele.querySelector()` on the parent element.
+  Besides <b>Document</b>, this method is also available on <b>Element</b> and <b>DocumentFragment</b>.<br/>
+  If you want to look within a specific element, just use <code>ele.querySelector()</code> on the parent element.<br/>
+  If you want to look within a specific fragment, just use <code>df.querySelector()</code> on the parent fragment.
 
   ```js
-  // Example - .outer > .inner
-  outerEle.addEventListener((ev) => {
-    let innerEle = ev.target.querySelector(".inner");
-  });
+  // Example - outer is a parent element/fragment.
+    let innerEle = outer.querySelector(".inner");
   ```
   </Admonition>
 </Accordion>
@@ -65,6 +64,19 @@ for (let p of paras) {
   p.className = "note";
 }
 ```
+
+<Accordion>
+  <Admonition type="note" title="Extra">
+  Besides <b>Document</b>, this method is also available on <b>Element</b> and <b>DocumentFragment</b>.<br/>
+  If you want to look for list of elements within specific element, just use <code>ele.querySelectorAll()</code> on the parent element.<br/>
+  If you want to look for list of elements within specific fragment, just use <code>df.querySelectorAll()</code> on the parent fragment.
+
+  ```js
+  // Example - outer is a parent element/fragment.
+    let innerEles = outer.querySelectorAll(".inner");
+  ```
+  </Admonition>
+</Accordion>
 
 <MDN title="querySelectorAll" url="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll" />
 
@@ -132,13 +144,13 @@ eleDiv.appendChild(eleH1)
 
 <Accordion title="Edge cases and alternative">
   <Admonition type="note" title="If it already has a parent">
-  If newElement is already a child of another element, 
+  If newNode is already a child of another node, 
   then it is removed from its existing parent and then added to the new parent.
   </Admonition>
 
   <Admonition type="note" title="If it is DocumentFragment">
-  If newElement is a DocumentFragment, then - instead of adding the fragment itself as a child, 
-  the entire content of the fragment is added as children of the parent element.
+  If newNode is a DocumentFragment, then - instead of adding the fragment itself as a child, 
+  the entire content of the fragment is added as children of the parent node.
   </Admonition>
 
   <Admonition type="note" title=".append()">
