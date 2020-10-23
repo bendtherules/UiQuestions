@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from "react";
 
 const Accordion = ({ children, title = "More" }) => {
   const detailsRef = useRef(null);
-  const summaryRef = useRef(null);
 
   function openAccordionOnHash() {
     const hash = location.hash.substring(1);
@@ -17,18 +16,16 @@ const Accordion = ({ children, title = "More" }) => {
 
     // 1. If target is within current details element
     const detailsElement = detailsRef.current;
-    const summaryElement = summaryRef.current;
     if (
       detailsElement !== null &&
-      summaryElement.current !== null &&
       detailsElement.contains(targetElement)
     ) {
       // 2. and it is not open,
       if (!detailsElement.open) {
         // 3. Then open it
         detailsElement.open = true;
-        // 4. and scroll into view, focus on summary
-        summaryElement.focus();
+        // 4. and scroll into view and focus
+        targetElement.focus();
         targetElement.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     }
@@ -48,7 +45,7 @@ const Accordion = ({ children, title = "More" }) => {
 
   return (
     <details ref={detailsRef}>
-      <summary ref={summaryRef}>{title}</summary>
+      <summary>{title}</summary>
       {children}
     </details>
   );
