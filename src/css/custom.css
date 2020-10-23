@@ -33,3 +33,7 @@
 .admonition h5 {
   text-transform: unset;
 }
+
+summary {
+  cursor: pointer;
+}
