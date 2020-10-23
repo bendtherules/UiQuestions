@@ -11,7 +11,7 @@ export default class Admonition extends Component {
     }
 
     return (
-      <div className={wrapperClasses.join(" ")} id={id}>
+      <div tabIndex={0} className={wrapperClasses.join(" ")} id={id}>
         <div className="admonition-heading">
           <h5>
             <div className="admonition-icon">{returnIcon(type, iconType)}</div>
