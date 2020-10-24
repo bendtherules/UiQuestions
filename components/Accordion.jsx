@@ -24,10 +24,10 @@ const Accordion = ({ children, title = "More" }) => {
       if (!detailsElement.open) {
         // 3. Then open it
         detailsElement.open = true;
-        // 4. and scroll into view and focus
-        targetElement.focus();
-        targetElement.scrollIntoView({ behavior: "smooth", block: "center" });
       }
+      // 4. and scroll into view and focus
+      targetElement.focus();
+      targetElement.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   }
 
