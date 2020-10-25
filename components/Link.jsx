@@ -8,6 +8,7 @@ const Link = ({hash,title}) =>{
         window.location.hash = hash;
       }
       
+      
     return <a onClick={handleLink} className="navlink">{title}</a>
 }
 
