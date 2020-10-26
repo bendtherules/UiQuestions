@@ -28,6 +28,9 @@ const Accordion = ({ children, title = "More" }) => {
       // 4. and scroll into view and focus
       targetElement.focus();
       targetElement.scrollIntoView({ behavior: "smooth", block: "center" });
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "auto";
+      }
     }
   }
 
