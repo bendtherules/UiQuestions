@@ -1,6 +1,6 @@
 import React from "react";
 
-const Link = ({ hash, title }) => {
+const InternalLink = ({ hash, title }) => {
   const handleLink = (event) => {
     //manually change hash to trigger hashChange event.
     window.location.hash = "#";
@@ -14,4 +14,4 @@ const Link = ({ hash, title }) => {
   );
 };
 
-export default Link;
+export default InternalLink;
