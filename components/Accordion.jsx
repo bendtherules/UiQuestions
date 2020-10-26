@@ -28,9 +28,13 @@ const Accordion = ({ children, title = "More" }) => {
       // 4. and scroll into view and focus
       targetElement.focus();
       targetElement.scrollIntoView({ block: "center" });
-      if ("scrollRestoration" in history) {
-        history.scrollRestoration = "auto";
-      }
+      // Increased for mobile browsers
+      const scrollRestorationDelay = 1000; // 1s
+      setTimeout(() => {
+        if ("scrollRestoration" in history) {
+          history.scrollRestoration = "auto";
+        }
+      }, scrollRestorationDelay);
     }
   }
 
