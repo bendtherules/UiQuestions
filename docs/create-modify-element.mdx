@@ -223,7 +223,7 @@ This method is used to create a new empty document fragment.
 DocumentFragment can be considered to be a off-screen lightweight `document` object. 
 It is generally used for batching multiple operations - by doing them in the fragment over time and then rendering the whole content to the visible DOM in one shot .
 
-Because fragment is not rendered, making changes to it doesn't cause any performance impact (no reflow). To **actually "render" the fragment** in the visible document, <Link title = "use appendChild" hash = "link-appendChild-documentFragment"/> or `insertBefore`.
+Because fragment is not rendered, making changes to it doesn't cause any performance impact (no reflow). To **actually "render" the fragment** in the visible document, <InternalLink hash="link-appendChild-documentFragment">use appendChild</InternalLink> or `insertBefore`.
 
 ```js
 let fragment = document.createDocumentFragment()
