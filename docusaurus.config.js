@@ -102,4 +102,10 @@ module.exports = {
       },
     ],
   ],
+  scripts: [
+    {
+      src:
+        '/scripts/handleScrollRestoration.js',
+    },
+  ]
 };

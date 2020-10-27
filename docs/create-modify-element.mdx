@@ -7,7 +7,13 @@ slug: /
 
 import Admonition from "../components/Admonition"
 import Accordion from "../components/Accordion"
+import InternalLink from "../components/InternalLink"
 import MDN from "../components/MDNBadge"
+
+:::note DOM interfaces
+Every kind of **DOM** node is represented by an interface based on **Node** interface.   
+**Element, Document and DocumentFragment** interfaces inherit from Node. More about DOM interfaces [here](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
+::: 
 
 ## Finding elements
 
@@ -24,19 +30,19 @@ document.querySelector(".not-found"); // null
 ```
 
 <Accordion>
-  <Admonition type="note" title="Extra">
-  This method is also available on all DOM nodes. If you want to look within a specific element, just use `ele.querySelector()` on the parent element.
+  <Admonition type="note" title="Also available on Element and fragment" id="link-element-has-qs">
+  Besides <b>Document</b>, this method is also available on <b>Element</b> and <b>DocumentFragment</b>.<br/>
+  If you want to look within a specific element, just use <code>ele.querySelector()</code> on the parent element.<br/>
+  If you want to look within a specific fragment, just use <code>df.querySelector()</code> on the parent fragment.
 
   ```js
-  // Example - .outer > .inner
-  outerEle.addEventListener((ev) => {
-    let innerEle = ev.target.querySelector(".inner");
-  });
+  // Example - outer is a parent element/fragment.
+    let innerEle = outer.querySelector(".inner");
   ```
   </Admonition>
 </Accordion>
 
-<MDN title="querySelector" url="https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelector" />
+<MDN title="querySelector" url="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector" />
 
 ### 2. querySelectorAll()
 
@@ -60,17 +66,21 @@ for (let p of paras) {
 }
 ```
 
-<MDN title="querySelectorAll" url="https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll" />
+`querySelectorAll` is also available on <b>Element</b> and <b>DocumentFragment</b>, in the <InternalLink href="#link-element-has-qs">same way as querySelector</InternalLink>.
+
+<MDN title="querySelectorAll" url="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll" />
 
 ## Create / insert element
 
 ### 3. createElement()
 
-It creates a new HTML element, taking the tag name (`"div"`) as argument.
+`document.createElement(tagName) : Element`
+
+This method creates a new HTML element, taking the specified HTML tag name as argument.
 
 ```js
 document.createElement("div")
-// creates <div/>
+// creates a <div> element
 ```
 
 <Accordion title="Related">
@@ -94,7 +104,7 @@ document.createElement("div")
 
 `Element.setAttribute(name, value)`
 
-It sets a attribute on the current element. 
+This method sets an attribute on the current element. 
 
 `name` - name of the attribute to add. Ex- "type".  
 `value` - value of the attribute. Ex- "text".
@@ -110,9 +120,9 @@ ele.setAttribute("type", "text")
 
 ### 5. appendChild()
 
-`Element.appendChild(newElement)`
+`Node.appendChild(newNode)`
 
-It inserts a new element as the last child of the parent element.
+This method inserts a new node as the last child of the parent node.
 
 ```js
 let eleDiv = document.createElement("div")
@@ -124,13 +134,13 @@ eleDiv.appendChild(eleH1)
 
 <Accordion title="Edge cases and alternative">
   <Admonition type="note" title="If it already has a parent">
-  If newElement is already a child of another element, 
+  If newNode is already a child of another node, 
   then it is removed from its existing parent and then added to the new parent.
   </Admonition>
 
-  <Admonition type="note" title="If it is DocumentFragment">
-  If newElement is a DocumentFragment, then - instead of adding the fragment itself as a child, 
-  the entire content of the fragment is added as children of the parent element.
+  <Admonition type="note" title="If it is DocumentFragment" id="link-appendChild-documentFragment">
+  If newNode is a DocumentFragment, then - instead of adding the fragment itself as a child, 
+  the entire content of the fragment is added as children of the parent node.
   </Admonition>
 
   <Admonition type="note" title=".append()">
@@ -150,11 +160,11 @@ eleDiv.appendChild(eleH1)
 
 ### 6. removeChild()
 
-`Element.removeChild(childElement)`
+`Node.removeChild(childNode)`
 
-This method tries to remove a child element from the parent and returns the removed node.
+This method tries to remove a child node from the parent and returns the removed node.
 
-If the element to be removed is not a child of the parent element, it throws a `NotFoundError` DOMException.
+If the node to be removed is not a child of the parent node, it throws a `NotFoundError` DOMException.
 
 ```js
 // <div class="parent">
@@ -168,13 +178,15 @@ parentEle.removeChild(childEle)
 
 ### 7. insertBefore()
 
-`Element.insertBefore(newEle, refEle)`
+`Node.insertBefore(newEle, refEle)`
 
-This method inserts a new child element before another child within a parent.
+This method inserts a new child node before another node within a parent.  
+
+It also works with **DocumentFragment**, by inserting all of its content in that position.
 
 `newEle` - The node to be inserted.  
 
-`refEle` - The reference element before which newEle should be inserted. If refEle is `null`, then newEle is added as the last child.
+`refEle` - The reference node before which newEle should be inserted. If refEle is `null`, then newEle is added as the last child.
 
 ```js
 // <ul>
@@ -204,18 +216,14 @@ parent.insertBefore(newEle, ref.nextSibling)
 
 ### 8. Document Fragment
 
+`document.createDocumentFragment() : DocumentFragment`
+
+This method is used to create a new empty document fragment.
+
 DocumentFragment can be considered to be a off-screen lightweight `document` object. 
 It is generally used for batching multiple operations - by doing them in the fragment over time and then rendering the whole content to the visible DOM in one shot .
 
-Because fragment is not rendered, making changes to it doesn't cause any performance impact (no reflow).
-
-**Methods** -
-
-`document.createDocumentFragment()` - creates a new empty fragment.
-
-`.appendChild()` / `.insertBefore()` - can be used to move the whole content of the fragment to the actual DOM.
-
-**Example** -
+Because fragment is not rendered, making changes to it doesn't cause any performance impact (no reflow). To **actually "render" the fragment** in the visible document, <InternalLink href="#link-appendChild-documentFragment">use appendChild</InternalLink> or `insertBefore`.
 
 ```js
 let fragment = document.createDocumentFragment()
