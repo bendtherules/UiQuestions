@@ -63,6 +63,18 @@ container.childNodes // [text, div, text]
 Read more about [other types of nodes](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType) and how [whitespace works in html](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Whitespace).
 :::
 
+### 2. .children
+
+`Element.children: HTMLCollection`
+
+This read-only property returns a live `HTMLCollection` containing all the **child elements** of the node. If there are no child elements, it returns empty HTMLCollection.
+
+This property is available on `Document`, `Element`, and `DocumentFragment`, but not on text node.
+
+`HTMLCollection` can be consumed easily by converting it to an array, using `Array.from()` or `[...ele.children]`. It also has a `.length` property.  
+Here, the HTMLCollection is **live** - meaning if new child elements are added, they will automatically appear in this collection.
+
+
 <!-- ## Content - html, text
 
 ## Traversal (and ientification)
