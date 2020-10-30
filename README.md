@@ -38,4 +38,7 @@ This command generates static content into the `build` directory and can be serv
 
 ### Deployment
 
-Auto-deployed via Netlify
+Auto-deployed via Netlify. Deploy log is public here - https://app.netlify.com/sites/uiquestions/deploys.
+
+Every branch/commit/PR gets deployed to a preview url.  
+Branch preview url looks like `{branch_name}--uiquestions.netlify.app/` ([example](https://4-element-properties--uiquestions.netlify.app/)).  
