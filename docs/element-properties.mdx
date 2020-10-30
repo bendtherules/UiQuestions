@@ -23,12 +23,14 @@ ele.tagName // "IMG"
 
 :::note Text nodes don't have `tagName`
 
-Text nodes are not element, so they don't have any tagName - it'll just give `undefined`.
+Text nodes are not element, so they don't have any tagName.  
+To identify the type of node, use `.nodeType` - which returns `3` (same as `Node.TEXT_NODE`) for text nodes.
 
+<MDN title="nodeType" url="https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType" />
 :::
 
 
-## Children and Content
+## Children
 
 :::note Types of Children
 
@@ -55,7 +57,7 @@ This is important because some properties return **only child elements**, wherea
 </div>
 
 container.childNodes // [text, div, text]
-// extra text nodes contain newline and space characters
+// extra text nodes contain newline and space
 ```
 
 Read more about [other types of nodes](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType) and how [whitespace works in html](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Whitespace).
