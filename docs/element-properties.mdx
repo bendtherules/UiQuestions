@@ -33,7 +33,7 @@ Text nodes are not element, so they don't have any tagName - it'll just give `un
 :::note Types of Children
 
 All elements will *generally* have 2 types of children - 1. element and 2. text node.
-You can think of elements as other tags and text node as the text/content within a tag. 
+You can think of elements as other tags and text node as the text within a tag. 
 
 ```jsx
 <div>
@@ -44,21 +44,19 @@ You can think of elements as other tags and text node as the text/content within
 </div>
 ```
 
-More importantly, if you are writing html by hand - it'll often introduce **invisible text nodes** which has only whitespace in it. Example -
+If you recall, *Element* extends from *Node* - so all elements are nodes. That means, every child is technically a node.  
+This is important because some properties return **only child elements**, whereas others return **all child nodes** (both element and text node). For ex, `ele.childNodes` returns all child nodes, but `ele.children` returns only child elements. 
+
+**Always use the one which is more suitable for your case**. Remember, even if you haven't added any "text" between a tag, it can still have **invisible text nodes** due to spaces and newline characters.
+
 ```jsx
 <div id="container">
   <div></div>
 </div>
 
 container.childNodes // [text, div, text]
-// extra text nodes are created at start and end
-// which only contains newline and space characters
+// extra text nodes contain newline and space characters
 ```
-
-If you recall, *Element* extends from *Node* - so all elements are nodes. That means, every child is technically a node.  
-This is important because some properties/methods return **only those child nodes which are element**, whereas others **return all child nodes** (both element and text node). For ex, `ele.childNodes` returns all child nodes, but `ele.children` returns only child elements. 
-
-Always use the one which is more suitable for your case. Remember, even if you haven't added any "text" between a tag, it can have invisible text nodes due to spaces and newline characters.
 
 Read more about [other types of nodes](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType) and how [whitespace works in html](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Whitespace).
 :::
