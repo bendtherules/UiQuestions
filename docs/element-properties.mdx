@@ -75,6 +75,33 @@ This property is available on `Document`, `Element`, and `DocumentFragment`, but
 Here, the HTMLCollection is **live** - meaning if new child elements are added, they will automatically appear in this collection.
 
 
+### 2. .childNodes
+
+`Element.childNodes: NodeList`
+
+This read-only property returns a live `NodeList` containing all the **child nodes** of the current element, including text nodes. If there are no child elements, it returns a empty NodeList.
+
+This property is available on all types of `Node` - like Element, text node, etc.
+
+`NodeList` can be converted to an array easily, using `Array.from()` or `[...ele.children]`. NodeList is also a iterable and has a `.length` property.  
+Here, the NodeList is **live**.
+
+```jsx
+<div id="parent">
+  Some text
+  <span>some element</span>
+  and more text
+</div>
+
+const childNodes = parent.childNodes;
+childNodes // NodeList [text, span, text]
+
+[...childNodes].forEach(node => {
+  // do something
+})
+```
+
+
 <!-- ## Content - html, text
 
 ## Traversal (and ientification)
