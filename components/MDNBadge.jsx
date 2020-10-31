@@ -3,8 +3,8 @@ import styles from "./MDNBadge.module.css";
 
 export default function MDNBadge({ title, url, i }) {
   // i stands for "is inline?" - default false
-  const wrapperClass = i ? wrapperInline : styles.wrapperBlock;
-  const imgClass = i ? imgInline : styles.imgBlock;
+  const wrapperClass = i ? styles.wrapperInline : styles.wrapperBlock;
+  const imgClass = i ? styles.imgInline : styles.imgBlock;
 
   return (
     <a
