@@ -71,9 +71,29 @@ This read-only property returns a live `HTMLCollection` containing all the **chi
 
 This property is available on `Document`, `Element`, and `DocumentFragment`, but not on text node.
 
-`HTMLCollection` can be consumed easily by converting it to an array, using `Array.from()` or `[...ele.children]`. It also has a `.length` property.  
+`HTMLCollection` can be consumed easily by converting it to an array, using `Array.from()` or `[...ele.children]`. HTMLCollection is also a iterable and has a `.length` property.  
 Here, the HTMLCollection is **live** - meaning if new child elements are added, they will automatically appear in this collection.
 
+```jsx
+<div id="parent">
+  Some text
+  <span>some element</span>
+</div>
+
+const children = parent.children;
+children // HTMLCollection [span]
+
+// 1. For-loop using .length
+for (let i = 0; i < children.length; i++) {
+  console.log(children[i].tagName);
+}
+
+// 2. Convert to array
+[...children].forEach(ele => {
+  // do something
+})
+
+```
 
 ### 2. .childNodes
 
