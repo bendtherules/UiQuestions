@@ -25,10 +25,14 @@ ele.tagName // "IMG"
 
 Text nodes are not element, so they don't have any tagName.  
 To identify the type of node, use `.nodeType` - which returns `3` (same as `Node.TEXT_NODE`) for text nodes.
-
-<MDN title="nodeType" url="https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType" />
 :::
 
+<span>
+  <MDN title="tagName" i url="https://developer.mozilla.org/en-US/docs/Web/API/Element/tagName" />&nbsp;
+
+  <MDN title="nodeType" i url="https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType" />&nbsp;
+</span>
+ 
 
 ## Children
 
@@ -95,6 +99,8 @@ for (let i = 0; i < children.length; i++) {
 
 ```
 
+<MDN title="children" url="https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/children" />
+
 ### 2. .childNodes
 
 `Element.childNodes: NodeList`
@@ -121,6 +127,7 @@ childNodes // NodeList [text, span, text]
 })
 ```
 
+<MDN title="childNodes" url="https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes" />
 
 <!-- ## Content - html, text
 
