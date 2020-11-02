@@ -23,7 +23,7 @@ ele.tagName // "IMG"
 
 :::note Text nodes don't have `tagName`
 
-Text nodes are not element, so they don't have any tagName. To identify the type of node, use `.nodeType`. For text nodes, `nodeType` is `3`- same as the constant `Node.TEXT_NODE`.
+Text nodes are not element, so they don't have any tagName. To identify the type of node, use `.nodeType` property. For text nodes, `nodeType` is `3` - same as the constant `Node.TEXT_NODE`.
 
 :::
 
@@ -67,7 +67,7 @@ container.childNodes // [text, div, text]
 Read more about [other types of nodes](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType) and how [whitespace works in html](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Whitespace).
 :::
 
-### 2. .children
+### 2. children
 
 `Element.children: HTMLCollection`
 
@@ -101,7 +101,7 @@ for (let i = 0; i < children.length; i++) {
 
 <MDN title="children" url="https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/children" />
 
-### 3. .childNodes
+### 3. childNodes
 
 `Element.childNodes: NodeList`
 
@@ -128,6 +128,71 @@ childNodes // NodeList [text, span, text]
 ```
 
 <MDN title="childNodes" url="https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes" />
+
+### 4. firstChild + nextSibling
+
+`Element.firstChild: Node`  
+
+
+This property returns the element's **first child** node in the tree. If the node has no children, then it returns `null`.
+
+`Element.nextSibling: Node`  
+
+This property returns the node immediately **after the current one** in their parent's childNodes.
+
+```jsx
+<div id="A">
+  <div id="B"/>
+  <div id="C"/>
+</div>
+
+var eleA = document.getElementByID("A")
+
+var eleB = eleA.firstChild // <div id="B">
+var eleC = eleB.nextSibling // <div id="C"/>
+eleC.nextSibling // null
+```
+
+There is also a similar `previousSibling` property, which returns the previous node. Also, there are element-only variant for all these properties like `firstElementChild`, `nextElementSibling`, etc.
+
+<Accordion title="Why is this useful?">
+
+:::note Easier traversal
+
+This allows accessing the DOM tree in [Left-child right-sibling](https://en.wikipedia.org/wiki/Left-child_right-sibling_binary_tree) (LCRS) form, which is more memory efficient for usual traversal. 
+
+#### How do you implement **dom traversal**?  
+
+The typical approach is to use a queue, push all children to the queue, pop them one-by-one and visit them. This requires **extra  memory** because of the queue data structure which holds all the *next items to visit*.  
+But with the LCRS form, you always have access to the next item **without using extra space**. If current element has child, visit `.firstChild`. Then visit next node using `.nextSibling`.
+
+```js
+// 1. Typical approach
+var queue = [root]
+while (queue.length > 0) {
+  const item = queue.shift();
+  console.log(item);
+  if (item.hasChildNodes()) {
+    queue = Array.from(item.childNodes).concat(queue)
+  }
+}
+
+// 2. LCRS approach
+function traverse(item) {
+  if (item === null) {
+    return;
+  }
+
+  console.log(item);
+  traverse(item.firstChild)
+  traverse(item.nextSibling)
+}
+traverse(root.firstChild)
+```
+:::
+
+</Accordion>
+
 
 <!-- ## Content - html, text
 
