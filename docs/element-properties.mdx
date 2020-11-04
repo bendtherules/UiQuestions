@@ -101,7 +101,7 @@ for (let i = 0; i < children.length; i++) {
 
 :::note Counting number of child elements
 
-`Element.childElementCount : number`  
+`Element.childElementCount: number`  
 It returns the **number of child elements** of the given element.
 
 This is equivalent to `ele.children.length` value.
@@ -140,7 +140,7 @@ childNodes // NodeList [text, span, text]
 :::note Is there any child node?
 
 `Node.hasChildNodes() : boolean`  
-This method returns a boolean value, indicating whether the given Node **has child nodes or not**.
+This method checks whether the given node **has child nodes or not** and returns a boolean value.
 
 This is equivalent to checking `node.childNodes.length > 0`.
 
@@ -151,7 +151,6 @@ This is equivalent to checking `node.childNodes.length > 0`.
 ### 4. firstChild + nextSibling
 
 `Element.firstChild: Node`  
-
 
 This property returns the element's **first child** node in the tree. If the node has no children, then it returns `null`.
 
@@ -172,7 +171,7 @@ var eleC = eleB.nextSibling // <div id="C"/>
 eleC.nextSibling // null
 ```
 
-There is also a similar `previousSibling` property, which returns the previous node. Also, there are element-only variant for all these properties like `firstElementChild`, `nextElementSibling`, etc.
+There is also a similar `previousSibling` property which returns the previous node. Also, there are element-only variants like `firstElementChild`, `nextElementSibling`, etc.
 
 <Accordion title="Why is this useful?">
 
