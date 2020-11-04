@@ -99,11 +99,21 @@ for (let i = 0; i < children.length; i++) {
 
 ```
 
+:::note Counting number of child elements
+
+`Element.childElementCount : number`  
+It returns the **number of child elements** of the given element.
+
+This is equivalent to `ele.children.length` value.
+
+:::
+
+
 <MDN title="children" url="https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/children" />
 
 ### 3. childNodes
 
-`Element.childNodes: NodeList`
+`Node.childNodes: NodeList`
 
 This read-only property returns a live `NodeList` containing all the **child nodes** of the current element, including text nodes. If there are no child nodes, it returns a empty NodeList.
 
@@ -126,6 +136,15 @@ childNodes // NodeList [text, span, text]
   // do something
 })
 ```
+
+:::note Is there any child node?
+
+`Node.hasChildNodes() : boolean`  
+This method returns a boolean value, indicating whether the given Node **has child nodes or not**.
+
+This is equivalent to checking `node.childNodes.length > 0`.
+
+:::
 
 <MDN title="childNodes" url="https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes" />
 
