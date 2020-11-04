@@ -10,7 +10,7 @@ import MDN from "../components/MDNBadge"
 
 ### 1. tagName
 
-`Element.tagName : string`
+`Element.tagName: string`
 
 `.tagName` is a read-only property on any element, which returns the tag name in uppercase form. This is useful to identify type of a element.
 
@@ -32,7 +32,22 @@ Text nodes are not element, so they don't have any tagName. To identify the type
 
   <MDN title="nodeType" i url="https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType" />&nbsp;
 </span>
- 
+
+### 2. parentElement
+
+`Node.parentElement: Element | null`
+
+`.parentElement` property returns **the parent element** of the current node. If the node doesn't have a parent, it returns null.
+
+Usually, the last parent will be `document` - which itself doesn't have a parent.
+
+```js
+<div id="parent">
+  <div id="child"/>
+</div>
+
+child.parentElement // <div id="parent>...</div>"
+```
 
 ## Children
 
@@ -67,7 +82,7 @@ container.childNodes // [text, div, text]
 Read more about [other types of nodes](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType) and how [whitespace works in html](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Whitespace).
 :::
 
-### 2. children
+### 3. children
 
 `Element.children: HTMLCollection`
 
@@ -111,7 +126,7 @@ This is equivalent to `ele.children.length` value.
 
 <MDN title="children" url="https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/children" />
 
-### 3. childNodes
+### 4. childNodes
 
 `Node.childNodes: NodeList`
 
@@ -148,7 +163,7 @@ This is equivalent to checking `node.childNodes.length > 0`.
 
 <MDN title="childNodes" url="https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes" />
 
-### 4. firstChild + nextSibling
+### 5. firstChild + nextSibling
 
 `Element.firstChild: Node`  
 
@@ -218,8 +233,6 @@ traverse(root.firstChild)
 
 
 <!-- ## Content - html, text
-
-## Traversal (and ientification)
 
 ## Attribute, class, id, data
 
