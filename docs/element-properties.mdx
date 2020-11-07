@@ -12,7 +12,7 @@ import MDN from "../components/MDNBadge"
 
 `Element.tagName: string`
 
-This read-only property on any element returns the **tag name** in uppercase form. This is useful to identify type of a element.
+This read-only property on any element returns the **tag name** in uppercase form. This is useful to identify type of an element.
 
 Ex. `.tagName` of `<div/>` element is `"DIV"`. 
 
@@ -24,7 +24,7 @@ someImage.tagName // "IMG"
 
 :::note Text nodes don't have `tagName`
 
-Text nodes are not element, so they don't have any tagName. To identify the type of node, use `.nodeType` property. For text nodes, `nodeType` is `3` - same as the constant `Node.TEXT_NODE`.
+Text nodes are not elements, so they don't have any tagName. To identify the type of node, use `.nodeType` property. For text nodes, `nodeType` is `3` - same as the constant `Node.TEXT_NODE`.
 
 :::
 
@@ -39,7 +39,7 @@ Text nodes are not element, so they don't have any tagName. To identify the type
 `Node.parentElement: Element | null`
 
 This property returns **the parent element** of the current node. If there is no parent, it returns null.  
-The topmost parent element in DOM is `document`. You can use this to check if a element is detached from dom.
+The topmost parent element in DOM is `document`. You can use this to check if an element is detached from dom.
 
 ```js
 <div id="parent">
@@ -53,7 +53,8 @@ child.parentElement // <div id="parent>...</div>"
 
 :::note Types of Children
 
-All elements will *generally* have 2 types of children - 1. element and 2. text node.
+All elements will *generally* have 2 types of children - an element or a text node.
+
 You can think of elements as other tags and text node as the text within it. 
 
 ```jsx
@@ -131,7 +132,7 @@ It returns the **number of child elements** of the given element. This is equiva
 
 This property returns a live `NodeList` containing all the **child nodes** of the current element. If there are no child nodes, it returns a empty NodeList.
 
-`NodeList` can be converted to an array easily, using `Array.from()` or `[...ele.children]`. NodeList also has a `.length` property.  
+`NodeList` can be converted to an array easily, using `Array.from()` or `[...node.childNodes]`. NodeList also has a `.length` property.  
 Here, the NodeList is **live** - so the content of NodeList will auto-update.
 
 ```jsx
@@ -176,10 +177,10 @@ This property returns the node immediately **after the current one** in their pa
   <div id="C"/>
 </div>
 
-var eleA = document.getElementByID("A")
+let eleA = document.getElementById("A")
 
-var eleB = eleA.firstChild // <div id="B">
-var eleC = eleB.nextSibling // <div id="C"/>
+let eleB = eleA.firstChild // <div id="B">
+let eleC = eleB.nextSibling // <div id="C"/>
 eleC.nextSibling // null
 ```
 
