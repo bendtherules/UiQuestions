@@ -12,13 +12,14 @@ import MDN from "../components/MDNBadge"
 
 `Element.tagName: string`
 
-`.tagName` is a read-only property on any element, which returns the tag name in uppercase form. This is useful to identify type of a element.
+This property returns the **tag name** of any element in uppercase form. This is useful to identify type of a element.
 
-Ex. For a `<div/>` element, tagName is `"DIV"`. 
+Ex. tagName of `<div/>` element is `"DIV"`. 
 
 ```js
-ele = document.querySelector("img");
-ele.tagName // "IMG"
+<img id="someImage" src="test.jpg" />
+
+someImage.tagName // "IMG"
 ```
 
 :::note Text nodes don't have `tagName`
@@ -37,9 +38,8 @@ Text nodes are not element, so they don't have any tagName. To identify the type
 
 `Node.parentElement: Element | null`
 
-`.parentElement` property returns **the parent element** of the current node. If the node doesn't have a parent, it returns null.
-
-Usually, the last parent will be `document` - which itself doesn't have a parent.
+This property returns **the parent element** of the current node. If there is no parent, it returns null.  
+The topmost parent element in DOM is `document`. You can use this to check if a element is detached from dom.
 
 ```js
 <div id="parent">
@@ -54,19 +54,20 @@ child.parentElement // <div id="parent>...</div>"
 :::note Types of Children
 
 All elements will *generally* have 2 types of children - 1. element and 2. text node.
-You can think of elements as other tags and text node as the text within a tag. 
+You can think of elements as other tags and text node as the text within it. 
 
 ```jsx
 <div>
   This is  // <- 1. text node
   <span>   // <- 2. element
-    some text // 2.1. <span> contains text node
+    some text // 2.1. text node
   </span>
 </div>
 ```
 
-If you recall, *Element* extends from *Node* - so all elements are nodes. That means, every child is technically a node.  
-This is important because some properties return **only child elements**, whereas others return **all child nodes** (both element and text node). For ex, `ele.childNodes` returns all child nodes, but `ele.children` returns only child elements. 
+If you recall, *Element* extends from *Node* - so element and text node are both actually Node.
+This is important because some properties return **only child elements**, whereas some return **all child nodes** (including text nodes).  
+For ex, `ele.childNodes` returns all child nodes, but `ele.children` returns only child elements. 
 
 **Always use the one which is more suitable for your case**. Remember, even if you haven't added any "text" between a tag, it can still have **invisible text nodes** due to spaces and newline characters.
 
@@ -86,11 +87,9 @@ Read more about [other types of nodes](https://developer.mozilla.org/en-US/docs/
 
 `Element.children: HTMLCollection`
 
-This read-only property returns a live `HTMLCollection` containing all the **child elements** of the node. If there are no child elements, it returns empty HTMLCollection.
+This property returns a live `HTMLCollection` containing all the **child elements** of the node. If there are no child elements, it returns empty HTMLCollection.
 
-This property is available on `Document`, `Element`, and `DocumentFragment`, but not on text node.
-
-`HTMLCollection` can be consumed easily by converting it to an array, using `Array.from()` or `[...ele.children]`. HTMLCollection is also a iterable and has a `.length` property.  
+`HTMLCollection` can be converted to an array using `Array.from()` or `[...ele.children]`. HTMLCollection also has a `.length` property.  
 Here, the HTMLCollection is **live** - meaning if new child elements are added, they will automatically appear in this collection.
 
 ```jsx
@@ -114,12 +113,12 @@ for (let i = 0; i < children.length; i++) {
 
 ```
 
+This property is also available on `Document` and `DocumentFragment`.
+
 :::note Counting number of child elements
 
 `Element.childElementCount: number`  
-It returns the **number of child elements** of the given element.
-
-This is equivalent to `ele.children.length` value.
+It returns the **number of child elements** of the given element. This is equivalent to `ele.children.length` value.
 
 :::
 
@@ -130,12 +129,10 @@ This is equivalent to `ele.children.length` value.
 
 `Node.childNodes: NodeList`
 
-This read-only property returns a live `NodeList` containing all the **child nodes** of the current element, including text nodes. If there are no child nodes, it returns a empty NodeList.
-
-This property is available on all types of `Node` - like Element, text node, etc.
+This property returns a live `NodeList` containing all the **child nodes** of the current element. If there are no child nodes, it returns a empty NodeList.
 
 `NodeList` can be converted to an array easily, using `Array.from()` or `[...ele.children]`. NodeList is also a iterable and has a `.length` property.  
-Here, the NodeList is **live**.
+Here, the NodeList is **live** - so the content of NodeList will auto-update.
 
 ```jsx
 <div id="parent">
@@ -144,7 +141,7 @@ Here, the NodeList is **live**.
   and more text
 </div>
 
-const childNodes = parent.childNodes;
+const {childNodes} = parent;
 childNodes // NodeList [text, span, text]
 
 [...childNodes].forEach(node => {
@@ -152,12 +149,12 @@ childNodes // NodeList [text, span, text]
 })
 ```
 
-:::note Is there any child node?
+This property is available on all types of `Node` - like Element, text node, etc.
+
+:::note Check if there is any child node
 
 `Node.hasChildNodes() : boolean`  
-This method checks whether the given node **has child nodes or not** and returns a boolean value.
-
-This is equivalent to checking `node.childNodes.length > 0`.
+This method checks whether the given node **has child nodes or not** and returns a boolean value. This is equivalent to checking `node.childNodes.length > 0`.
 
 :::
 
@@ -167,7 +164,7 @@ This is equivalent to checking `node.childNodes.length > 0`.
 
 `Element.firstChild: Node`  
 
-This property returns the element's **first child** node in the tree. If the node has no children, then it returns `null`.
+This property returns the element's **first child** node in the tree. If there is no children, it returns `null`.
 
 `Element.nextSibling: Node`  
 
