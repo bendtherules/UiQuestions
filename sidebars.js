@@ -2,7 +2,7 @@ module.exports = {
   "Quick Guide": {
     "DOM and Events": [
       "create-modify-element",
-      'element-properties',
+      'element-child-content',
       'element-position-scroll',
      ],
 
