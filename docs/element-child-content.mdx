@@ -1,0 +1,410 @@
+---
+id: element-child-content
+title: Child and Content
+---
+
+import Admonition from "../components/Admonition"
+import Accordion from "../components/Accordion"
+import InternalLink from "../components/InternalLink"
+import MDN from "../components/MDNBadge"
+
+### 1. tagName
+
+`Element.tagName: string`
+
+This read-only property on any element returns the **tag name** in uppercase form. This is useful to identify type of an element.
+
+Ex. `.tagName` of `<div/>` element is `"DIV"`. 
+
+```js
+<img id="someImage" src="test.jpg" />
+
+someImage.tagName // "IMG"
+```
+
+:::note Text nodes don't have `tagName`
+
+Text nodes are not elements, so they don't have any tagName. To identify the type of node, use `.nodeType` property. For text nodes, `nodeType` is `3` - same as the constant `Node.TEXT_NODE`.
+
+:::
+
+<span>
+  <MDN title="tagName" i url="https://developer.mozilla.org/en-US/docs/Web/API/Element/tagName" />&nbsp;
+
+  <MDN title="nodeType" i url="https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType" />&nbsp;
+</span>
+
+### 2. parentNode
+
+`Node.parentNode: Element | Document | DocumentFragment | null`
+
+This property returns **the parent node** of the current node. If there is no parent, it returns null. In case of Document and DocumentFragment, `.parentNode` is always null.  
+
+The topmost parentNode in DOM is `document`. This can be used to check if an element is detached from the DOM. 
+
+```js
+<div id="parent">
+  <div id="child"/>
+</div>
+
+child.parentNode // <div id="parent>...</div>
+```
+<Accordion title="Related">
+  <Admonition type="note" title="Node.parentElement : Element | null">
+
+  This property returns ** the parent element ** of the current node. If there is no parent, it returns null.
+
+  The topmost parentElement in DOM is the `<html/>` element, which is also available as `document.documentElement`.
+
+  ```js
+let newEle = document.createElement("div");
+newEle.parentNode // null
+newEle.parentElement // null
+
+// In case of appending to an element
+document.body.append(newEle)
+newEle.parentNode // <body>...</body>
+newEle.parentElement // <body>...</body>
+
+//In case of appending to a document fragment, say, df
+df.append(newEle)
+newEle.parentNode // document-fragment
+newEle.parentElement // null
+
+```
+
+
+  </Admonition>
+</Accordion>
+
+
+<span><MDN title="parentNode" url="https://developer.mozilla.org/en-US/docs/Web/API/Node/parentNode" /></span>
+
+## Children
+
+:::note Types of Children
+
+All elements will *generally* have 2 types of children - an element or a text node.
+
+You can think of elements as other tags and text node as the text within it. 
+
+```jsx
+<div>
+  This is  // <- 1. text node
+  <span>   // <- 2. element
+    some text // 2.1. text node
+  </span>
+</div>
+```
+
+If you recall, *Element* extends from *Node* - so element and text node are both actually Node.
+This is important because some properties return **only child elements**, whereas some return **all child nodes** (including text nodes).  
+For ex, `ele.childNodes` returns all child nodes, but `ele.children` returns only child elements. 
+
+**Always use the one which is more suitable for your case**. Remember, even if you haven't added any "text" between a tag, it can still have **invisible text nodes** due to spaces and newline characters.
+
+```jsx
+<div id="container">
+  <div></div>
+</div>
+
+container.childNodes // [text, div, text]
+// extra text nodes contain newline and space
+```
+
+Read more about [other types of nodes](https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType) and how [whitespace works in html](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Whitespace).
+:::
+
+### 3. children
+
+`Element.children: HTMLCollection`
+
+This property returns a live `HTMLCollection` containing all the **child elements** of the node. If there are no child elements, it returns empty HTMLCollection.
+
+`HTMLCollection` can be converted to an array using `Array.from()` or `[...ele.children]`. HTMLCollection also has a `.length` property.  
+Here, the HTMLCollection is **live** - meaning if new child elements are added, they will automatically appear in this collection.
+
+```jsx
+<div id="parent">
+  Some text
+  <span>some element</span>
+</div>
+
+const children = parent.children;
+children // HTMLCollection [span]
+
+// 1. For-loop using .length
+for (let i = 0; i < children.length; i++) {
+  console.log(children[i].tagName);
+}
+
+// 2. Convert to array
+[...children].forEach(ele => {
+  // do something
+})
+
+```
+
+This property is also available on `Document` and `DocumentFragment`.
+
+:::note Counting number of child elements
+
+`Element.childElementCount: number`  
+
+It returns the **number of child elements** of the given element. This is equivalent to `ele.children.length` value.
+
+:::
+
+
+<MDN title="children" url="https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/children" />
+
+### 4. childNodes
+
+`Node.childNodes: NodeList`
+
+This property returns a live `NodeList` containing all the **child nodes** of the current element. If there are no child nodes, it returns a empty NodeList.
+
+`NodeList` can be converted to a array using `Array.from()` or `[...node.childNodes]`. NodeList also has a `.length` property.  
+Here, the NodeList is **live** - so the content of NodeList will auto-update.
+
+```jsx
+<div id="parent">
+  Some text
+  <span>some element</span>
+  and more text
+</div>
+
+const {childNodes} = parent;
+childNodes // NodeList [text, span, text]
+
+[...childNodes].forEach(node => {
+  // do something
+})
+```
+
+This property is available on all types of `Node` - like Element, text node, etc.
+
+:::note Check if there is any child node
+
+`Node.hasChildNodes() : boolean`  
+
+This method checks whether the given node **has child nodes or not** and returns a boolean value. This is equivalent to checking `node.childNodes.length > 0`.
+
+:::
+
+<MDN title="childNodes" url="https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes" />
+
+### 5. firstChild + nextSibling
+
+`Element.firstChild: Node`  
+
+This property returns the element's **first child** node in the tree. If there is no children, it returns `null`.
+
+`Element.nextSibling: Node`  
+
+This property returns the node immediately **after the current one** in their parent's childNodes.
+
+```jsx
+<div id="A">
+  <div id="B"/>
+  <div id="C"/>
+</div>
+
+let eleA = document.getElementById("A")
+
+let eleB = eleA.firstChild // <div id="B">
+let eleC = eleB.nextSibling // <div id="C"/>
+eleC.nextSibling // null
+```
+
+There is also a similar `previousSibling` property which returns the previous node. Also, there are element-only variants like `firstElementChild`, `nextElementSibling`, etc.
+
+<Accordion title="Why is this useful?">
+
+:::note Easier traversal
+
+This allows accessing the DOM tree in [Left-child right-sibling](https://en.wikipedia.org/wiki/Left-child_right-sibling_binary_tree) (LCRS) form, which is more memory efficient for usual traversal. 
+
+#### How do you implement dom traversal ?  
+
+The typical approach is to use a queue, push all children to the queue, pop them one-by-one and visit them. This requires **extra  memory** because of the queue data structure which holds all the *next items to visit*.  
+But with the LCRS form, you always have access to the next item **without using extra space**. If current element has child, visit `.firstChild`. Then visit next node using `.nextSibling`.
+
+```js
+// 1. Typical approach
+let queue = [root]
+while (queue.length > 0) {
+  const item = queue.shift();
+  console.log(item);
+  if (item.hasChildNodes()) {
+    queue = queue.concat([...item.childNodes]);
+  }
+}
+
+// 2. LCRS approach
+function traverse(item) {
+  if (item === null) {
+    return;
+  }
+
+  console.log(item);
+  traverse(item.firstChild)
+  traverse(item.nextSibling)
+}
+traverse(root.firstChild)
+```
+:::
+
+</Accordion>
+
+<span>
+  <MDN i title="firstChild" url="https://developer.mozilla.org/en-US/docs/Web/API/Node/firstChild" />&nbsp;
+  <MDN i title="nextSibling" url="https://developer.mozilla.org/en-US/docs/Web/API/Node/nextSibling" />
+</span>
+
+
+## Content
+
+### 6. innerText
+
+`Element.innerText: string [= value]`  
+
+Returns the **text content** of the element and its descendants **"as rendered"**.
+
+Can be set, to **replace the element's children** with the given string. It creates a *text node* for every normal text range, but replaces each line break with a `<br/>` element.
+
+
+**Example 1 -**  
+`.innerText` tries to return a string which represents the actual visible text, not the text literally written in html. Notice how &lt;br/&gt; tags and the css affects the output -
+```jsx
+<span id="text">
+Some text <br>then a newline<br>and another.
+</span>
+<style>#text{ text-transform: uppercase; }</style>
+
+console.log(text.innerText)
+// SOME TEXT
+// THEN A NEWLINE
+// AND ANOTHER.
+```
+:::note
+On the other hand, `node.textContent` concatenates the actual text nodes used in the html and returns that string.
+
+```jsx
+console.log(text.textContent)
+// Some text then a newline and another.
+```
+:::
+
+**Example 2 -**  
+As setter, it replaces `\n` and `\r\n` in the input string with &lt;br/&gt; tags and wraps the rest in text nodes.
+
+```jsx
+<span id="text"></span>
+
+text.innerText = "new text \n and a newline"
+
+text.childNodes
+// NodeList [
+//  text "new text ", br, text " and a newline."
+// ]
+
+// result html -
+// <span id="text">new text <br/> and a newline</span>
+```
+
+<span>
+  <MDN title="innerText" i url="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/innerText" />&nbsp;
+
+  <MDN title="textContent" i url="https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent" />&nbsp;
+</span>
+
+### 7. innerHTML
+
+`Element.innerHTML: string [= value]`
+
+Returns the **html markup contained within the element** as a string.
+
+Can be set, to replace the **contents of the element with nodes parsed** from the given string. The existing content will be removed.
+
+**Example 1-**
+```jsx
+<div id="parent">
+  <div id="c1">text1</div>
+  <div id="c2">text2</div>
+</div>
+
+console.log(parent.innerHTML)
+//  <div id="c1">text1</div>
+//  <div id="c2">text2</div>
+```
+
+**Example 2-**
+```jsx
+<div id="parent"/>
+
+parent.innerHTML = `
+  <div id="c1">text1</div>
+  <div id="c2">text2</div>
+`
+
+// result html-
+<div id="parent">
+  <div id="c1">text1</div>
+  <div id="c2">text2</div>
+</div>
+```
+
+:::note To remove all children
+
+To clear the content of any element, you can use `ele.innerHTML = ""`.
+
+:::
+
+<MDN title="innerHTML" url="https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML" />
+
+### 8. outerHTML
+
+`Element.outerHTML: string [= value]`
+
+Returns the html markup of the **element and its contents** as a string.
+
+Can be set, to **replace the element** itself with nodes parsed from the given string.
+
+**Example 1-**
+```jsx
+<div id="parent">
+  <div id="c1">text1</div>
+</div>
+
+console.log(parent.outerHTML)
+// <div id="parent">
+//   <div id="c1">text1</div>
+// </div>
+```
+
+**Example 2-**
+
+Replacing `parent2` with 2 new nodes -
+
+```jsx
+<div id="parent1">
+  <div id="parent2">parent 2</div>
+  <div id="parent3">parent 3</div>
+</div>
+
+parent2.outerHTML = `
+  <div>child 1</div>
+  <div>child 2</div>
+`
+
+// result html-
+<div id="parent1">
+  <div>child 1</div>
+  <div>child 2</div>
+  <div id="parent3">parent 3</div>
+</div>
+```
+
+<MDN title="outerHTML" url="https://developer.mozilla.org/en-US/docs/Web/API/Element/outerHTML" />
+

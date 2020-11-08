@@ -23,6 +23,10 @@
   }
 }
 
+.alert--secondary {
+  --ifm-alert-background-color: var(--ifm-color-secondary-lightest);
+}
+
 .docusaurus-highlight-code-line {
   background-color: rgb(72, 77, 91);
   display: block;
@@ -34,14 +38,17 @@
   text-transform: unset;
 }
 
-.navlink{
+.navlink {
   cursor: pointer;
 }
 
-.navlink:hover{
-text-decoration: underline;
+.navlink:hover {
+  text-decoration: underline;
 }
 
+details {
+  margin-bottom: var(--ifm-leading);
+}
 summary {
   cursor: pointer;
 }
