@@ -1,6 +1,6 @@
 module.exports = {
   "Quick Guide": {
-    "DOM and Events": [
+    "DOM Manipulation": [
       "create-modify-element",
       'element-child-content',
       'element-position-scroll',
