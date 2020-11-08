@@ -237,7 +237,7 @@ while (queue.length > 0) {
   const item = queue.shift();
   console.log(item);
   if (item.hasChildNodes()) {
-    queue.push(Array.from(item.childNodes));
+    queue = queue.concat([...item.childNodes]);
   }
 }
 
