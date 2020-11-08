@@ -236,10 +236,9 @@ traverse(root.firstChild)
 
 `Element.innerText: string [= value]`  
 
-Returns the element's **text content "as rendered"**.
+Returns the **text content** of the element and its descendants **"as rendered"**.
 
-Can be set, to **replace the element's children** with the given string.  
-It adds a *text node* for the normal text ranges, but replaces line breaks with `<br/>` elements.
+Can be set, to **replace the element's children** with the given string. It creates a *text node* for every normal text range, but replaces each line break with a `<br/>` element.
 
 
 **Example 1 -**  
