@@ -1,6 +1,6 @@
 module.exports = {
   title: 'UI Questions',
-  tagline: 'Review all frontend topics before a interview',
+  tagline: 'Review all frontend topics before an interview',
   url: 'https://UiQuestions.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
