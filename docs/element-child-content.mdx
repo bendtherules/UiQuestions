@@ -38,7 +38,9 @@ Text nodes are not elements, so they don't have any tagName. To identify the typ
 
 `Node.parentNode: Element | Document | DocumentFragment | null`
 
-This property returns **the parent node** of the current node. If there is no parent, it returns null (which is always true in the case of Document and DocumentFragment).  
+This property returns **the parent node** of the current node. If there is no parent, it returns null. In case of Document and DocumentFragment, `.parentNode` is always null.  
+
+The topmost parentNode in DOM is `document`. This can be used to check if an element is detached from the DOM. 
 
 ```js
 <div id="parent">
@@ -52,7 +54,7 @@ child.parentNode // <div id="parent>...</div>
 
   This property returns ** the parent element ** of the current node. If there is no parent, it returns null.
 
-  The topmost parent node in DOM is document. This can be used to check if an element is detached from DOM. 
+  The topmost parentElement in DOM is the `<html/>` element, which is also available as `document.documentElement`.
 
   ```js
 let newEle = document.createElement("div");
