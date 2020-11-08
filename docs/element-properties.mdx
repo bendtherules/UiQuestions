@@ -285,3 +285,95 @@ text.innerText = "new text \n and a newline"
 
   <MDN title="textContent" i url="https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent" />&nbsp;
 </span>
+
+### 7. innerHTML
+
+`Element.innerHTML: string [= value]`
+
+Returns the **html markup contained within the element** as a string.
+
+Can be set, to replace the **contents of the element with nodes parsed** from the given string. The existing content will be removed.
+
+:::note To insert instead of replace
+
+To **insert** the html into the element rather than replacing it, read about the method [`insertAdjacentHTML()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML).
+
+:::
+
+**Example 1-**
+```jsx
+<div id="parent">
+  <div id="c1">text1</div>
+  <div id="c2">text2</div>
+</div>
+
+console.log(parent.innerHTML)
+//  <div id="c1">text1</div>
+//  <div id="c2">text2</div>
+```
+
+**Example 2-**
+```jsx
+<div id="parent"/>
+
+parent.innerHTML = `
+  <div id="c1">text1</div>
+  <div id="c2">text2</div>
+`
+
+// result html-
+<div id="parent">
+  <div id="c1">text1</div>
+  <div id="c2">text2</div>
+</div>
+```
+
+To clear the content of any element, you can use `ele.innerHTML = ""`.
+
+<MDN title="innerHTML" url="https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML" />
+
+### 8. outerHTML
+
+`Element.outerHTML: string [= value]`
+
+Returns the html markup of the **element and its contents** as a string.
+
+Can be set, to **replace the element** itself with nodes parsed from the given string.
+
+**Example 1-**
+```jsx
+<div id="parent">
+  <div id="c1">text1</div>
+</div>
+
+console.log(parent.outerHTML)
+// <div id="parent">
+//   <div id="c1">text1</div>
+// </div>
+```
+
+**Example 2-**
+
+Replacing `parent2` with 2 new nodes -
+
+```jsx
+<div id="parent1">
+  <div id="parent2">parent 2</div>
+  <div id="parent3">parent 3</div>
+</div>
+
+parent2.outerHTML = `
+  <div>child 1</div>
+  <div>child 2</div>
+`
+
+// result html-
+<div id="parent1">
+  <div>child 1</div>
+  <div>child 2</div>
+  <div id="parent3">parent 3</div>
+</div>
+```
+
+<MDN title="outerHTML" url="https://developer.mozilla.org/en-US/docs/Web/API/Element/outerHTML" />
+
