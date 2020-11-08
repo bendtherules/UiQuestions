@@ -229,8 +229,53 @@ traverse(root.firstChild)
 </span>
 
 
-<!-- ## Content - html, text
+## Content
 
-## Attribute, class, id, data
+### 6. innerText
 
-## Scroll -->
+`Element.innerText: string [= value]`  
+
+Returns the element's **text content "as rendered"**.
+
+Can be set, to **replace the element's children** with the given string.  
+It adds a *text node* for the normal text ranges, but replaces line breaks with `<br/>` elements.
+
+
+**Example 1 -**  
+`.innerText` tries to return a string which represents the actual visible text, not the text literally written in html.  
+Note how &lt;br/&gt; tags and the css have a effect on the output -
+```jsx
+<span id="text">
+Some text <br>then a newline<br>and another.
+</span>
+<style>#text{ text-transform: uppercase; }</style>
+
+console.log(text.innerText)
+// SOME TEXT
+// THEN A NEWLINE
+// AND ANOTHER.
+```
+
+On the other hand, `node.textContent` concatenates the actual text nodes used in the html and returns that string.
+
+```jsx
+console.log(text.textContent)
+// Some text then a newlineand another.
+```
+
+**Example 2 -**  
+As setter, it replaces `\n` and `\r\n` in the input string with &lt;br/&gt; tags and wraps the rest in text nodes.
+
+```jsx
+<span id="text"></span>
+
+text.innerText = "new text \n and a newline"
+// NodeList(3) [
+//  text "new text ", 
+//  br, 
+//  text " and a newline."
+// ]
+
+// result html -
+<span id="text">new text <br/> and a newline</span>
+```
